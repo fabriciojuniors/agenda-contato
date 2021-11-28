@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Grupo } from '../models/grupo';
+import { ToastController } from '@ionic/angular';
+import { Grupo, Relevancia } from '../models/grupo';
+import { ContatoService } from './contato.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,25 +9,28 @@ import { Grupo } from '../models/grupo';
 export class GrupoService {
   private grupos : Grupo[]
   private contador = 4;
-  constructor() { 
+  constructor(private contatoServive : ContatoService, private toastController : ToastController) { 
     this.grupos = [
       {
         id: 1,
         nome: 'Familia',
         descricao: 'Contato de uma pessoa membro da familia',
-        ativo: true
+        ativo: true,
+        relevancia: Relevancia.ALTA
       },
       {
         id: 2,
         nome: 'Amigos',
         descricao: 'Contato de um amigo',
-        ativo: true
+        ativo: true,
+        relevancia: Relevancia.MEIDA
       },
       {
         id: 3,
         nome: 'Trabalho',
         descricao: 'Contato de uma pessoa do trabalho',
-        ativo: true
+        ativo: true,
+        relevancia: Relevancia.ALTA
       }
     ]
   }
@@ -34,8 +39,19 @@ export class GrupoService {
     return this.grupos.filter(grupo => grupo.ativo);
   }
 
-  public remover(id){
-    this.grupos = this.grupos.filter(grupo => grupo.id != id);
+  public async remover(id){
+    const grupo = this.getById(id);
+    const contatos = this.contatoServive.getByGrupo(grupo);
+    if(contatos.length > 0){
+      const toast = await this.toastController.create({
+        animated: true,
+        message: "O grupo não pode ser excluído pois existe contatos vinculados.",
+        duration: 3000
+      });
+      return await toast.present();
+    }else{
+      this.grupos = this.grupos.filter(grupo => grupo.id != id);
+    }
   }
 
   public salvar(grupo : Grupo){

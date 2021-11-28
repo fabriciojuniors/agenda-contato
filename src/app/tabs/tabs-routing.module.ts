@@ -12,6 +12,10 @@ const routes: Routes = [
         loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
       },
       {
+        path: 'grupos',
+        loadChildren: () => import('../listagem-grupos/listagem-grupos.module').then(m => m.ListagemGruposPageModule)
+      },
+      {
         path: '',
         redirectTo: '/pagina/contatos',
         pathMatch: 'full'

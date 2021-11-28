@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadastro de grupo</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="Contatos" [icon]="buttonIcon">
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [formGroup]="form">
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Nome</ion-label>
+        <ion-input type="text" formControlName="nome"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Descrição</ion-label>
+        <ion-textarea formControlName="descricao"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label>Relevancia</ion-label>
+        <ion-select formControlName="relevancia" interface="action-sheet">
+          <ion-select-option value="Alta">Alta</ion-select-option>
+          <ion-select-option value="Media">Média</ion-select-option>
+          <ion-select-option value="Baixa">Baixa</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Ativo</ion-label>
+        <ion-checkbox slot="end" formControlName="ativo"></ion-checkbox>
+      </ion-item>
+      <br>
+      <ion-button [disabled]="!form.valid" (click)="salvar()" expand="block">
+        Salvar
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

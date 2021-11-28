@@ -14,7 +14,15 @@ const routes: Routes = [
   {
     path: 'cadastro-contato',
     loadChildren: () => import('./cadastro-contato/cadastro-contato.module').then( m => m.CadastroContatoPageModule)
+  },  {
+    path: 'listagem-grupos',
+    loadChildren: () => import('./listagem-grupos/listagem-grupos.module').then( m => m.ListagemGruposPageModule)
+  },
+  {
+    path: 'cadastro-grupos',
+    loadChildren: () => import('./cadastro-grupos/cadastro-grupos.module').then( m => m.CadastroGruposPageModule)
   }
+
 
 ];
 @NgModule({

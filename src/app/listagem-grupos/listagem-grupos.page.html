@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Grupos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="atualizar($event)">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Puxe para atualizar"
+      refreshingSpinner="circles" refreshingText="Buscando gruopos...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add" [routerLink]="['/cadastro-grupos']" routerLinkActive="router-link-active"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Grupos</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item-sliding *ngFor="let grupo of grupos">
+        <ion-item>
+          <ion-label> {{grupo.nome}} </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option [routerLink]="['/cadastro-grupos', grupo.id]" routerLinkActive="router-link-active">Editar
+          </ion-item-option>
+          <ion-item-option (click)="excluir(grupo)" color="danger">Excluir</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
