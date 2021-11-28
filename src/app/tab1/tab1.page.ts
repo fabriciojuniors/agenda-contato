@@ -26,8 +26,8 @@ export class Tab1Page implements OnInit{
     for (let i = 0; i < contatos.length; i++) {
       const contato = contatos[i];
 
-      if (!ultimo || ultimo != contato.nome[0]) {
-        ultimo = contato.nome[0];
+      if (!ultimo || ultimo != contato.nome[0].toUpperCase()) {
+        ultimo = contato.nome[0].toUpperCase();
         this.contatos.push({ key: ultimo, contatos: [] });
       }
 
@@ -52,8 +52,8 @@ export class Tab1Page implements OnInit{
     for (let i = 0; i < contatos.length; i++) {
       const contato = contatos[i];
 
-      if (!ultimo || ultimo != contato.nome[0]) {
-        ultimo = contato.nome[0];
+      if (!ultimo || ultimo != contato.nome[0].toUpperCase()) {
+        ultimo = contato.nome[0].toUpperCase();
         this.contatos.push({ key: ultimo, contatos: [] });
       }
 

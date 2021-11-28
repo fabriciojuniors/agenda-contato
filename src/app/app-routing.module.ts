@@ -10,7 +10,8 @@ const routes: Routes = [
   {
     path: 'detalhes-contato/:id',
     loadChildren: () => import('./detalhes-contato/detalhes-contato.module').then(m => m.DetalhesContatoPageModule)
-  },  {
+  },
+  {
     path: 'cadastro-contato',
     loadChildren: () => import('./cadastro-contato/cadastro-contato.module').then( m => m.CadastroContatoPageModule)
   }

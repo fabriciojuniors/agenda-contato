@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: CadastroContatoPage
+  },
+  {
+    path: ':id',
+    component: CadastroContatoPage
   }
 ];
 
