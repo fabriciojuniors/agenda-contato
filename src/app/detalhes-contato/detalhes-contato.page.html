@@ -1,0 +1,59 @@
+<ion-header lines=none>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Contatos" [icon]="buttonIcon">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="onClick()">Editar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1 style="text-align: center;">{{contato.nome}} {{contato.sobrenome}}</h1>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Telefones</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item *ngFor="let telefone of contato.telefones">
+        <div>
+          <small> {{telefone.tipo}} </small>
+          <p> {{telefone.telefone}} </p>
+        </div>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>E-mail</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <a href="mailto:{{contato.email}}"> {{contato.email}} </a>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Dados</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p> <strong>Apelido:</strong> {{contato.apelido}}</p>
+      <p> <strong>Aniversário:</strong> {{contato.data_nascimento | date:'dd/MM/yyyy'}}</p>
+      <p> <strong>Grupo:</strong> {{contato.grupo.nome}}</p>
+      <p> <strong>Informações:</strong> {{contato.informacoes}}</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-footer class="ion-no-border">
+    <ion-card>
+      <ion-card-content>
+        <ion-button (click)="excluir()" expand="block" color="danger">
+          Excluir contato
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-footer>
+</ion-content>
