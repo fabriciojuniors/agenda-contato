@@ -36,8 +36,7 @@ export class CadastroContatoPage implements OnInit {
     const contato = this.contatoService.getById(id);
     if(contato){
       this.form.patchValue({
-        ...contato,
-        data_nascimento: contato.data_nascimento.toISOString()});
+        ...contato});
       this.telefones = contato.telefones;
     }
     this.grupos = this.grupoService.getGrupos();
